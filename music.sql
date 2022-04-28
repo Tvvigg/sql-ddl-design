@@ -13,9 +13,27 @@ CREATE TABLE songs
   title TEXT NOT NULL,
   duration_in_seconds INTEGER NOT NULL,
   release_date DATE NOT NULL,
-  artists TEXT[] NOT NULL,
+  artists_id SERIAL NOT NULL,
   album TEXT NOT NULL,
-  producers TEXT[] NOT NULL
+  producers_id SERIAL NOT NULL
+  CONSTRAINT "FK_songs.artists_id"
+    FOREIGN KEY ("artists_id")
+      REFERENCES "artists"("id")
+  CONSTRAINT "FK_songs.producers_id"
+    FOREIGN KEY ("producers_id")
+      REFERENCES "producers"("id")
+);
+
+CREATE TABLE artists
+(
+  id SERIAL PRIMARY KEY
+  name TEXT
+);
+
+CREATE TABLE producers
+(
+  id SERIAL PRIMARY KEY
+  name TEXT
 );
 
 INSERT INTO songs

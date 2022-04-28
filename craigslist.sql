@@ -1,20 +1,20 @@
 CREATE TABLE "Category" (
-  "id" <type>,
-  "name" <type>,
+  "id" SERIAL,
+  "name" TEXT,
   PRIMARY KEY ("id")
 );
 
 CREATE TABLE "Region" (
-  "id" <type>,
-  "name" <type>,
+  "id" SERIAL,
+  "name" TEXT,
   PRIMARY KEY ("id")
 );
 
 CREATE TABLE "User" (
-  "id" <type>,
-  "username" <type>,
-  "password" <type>,
-  "region_id" <type>,
+  "id" SERIAL,
+  "username" TEXT,
+  "password" TEXT,
+  "region_id" SERIAL,
   PRIMARY KEY ("id"),
   CONSTRAINT "FK_User.region_id"
     FOREIGN KEY ("region_id")
@@ -22,13 +22,13 @@ CREATE TABLE "User" (
 );
 
 CREATE TABLE "Post" (
-  "id" <type>,
-  "user_id" <type>,
-  "catergory_id" <type>,
-  "title" <type>,
-  "text" <type>,
-  "location" <type>,
-  "region_id" <type>,
+  "id" SERIAL,
+  "user_id" SERIAL,
+  "catergory_id" SERIAL,
+  "title" TEXT,
+  "text" TEXT,
+  "location" TEXT,
+  "region_id" SERIAL,
   PRIMARY KEY ("id"),
   CONSTRAINT "FK_Post.user_id"
     FOREIGN KEY ("user_id")

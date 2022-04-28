@@ -1,27 +1,27 @@
 CREATE TABLE "Teams" (
-  "id" <type>,
-  "name" <type>,
-  "city" <type>,
+  "id" SERIAL,
+  "name" TEXT,
+  "city" TEXT,
   PRIMARY KEY ("id")
 );
 
 CREATE TABLE "Referees" (
-  "id" <type>,
-  "name" <type>,
+  "id" SERIAL,
+  "name" TEXT,
   PRIMARY KEY ("id")
 );
 
 CREATE TABLE "Season" (
-  "id" <type>,
-  "start_date" <type>,
-  "end_date" <type>,
+  "id" SERIAL,
+  "start_date" TIMESTAMP,
+  "end_date" TIMESTAMP,
   PRIMARY KEY ("id")
 );
 
 CREATE TABLE "Player" (
-  "id" <type>,
-  "name" <type>,
-  "current_team_id" <type>,
+  "id" SERIAL,
+  "name" TEXT,
+  "current_team_id" SERIAL,
   PRIMARY KEY ("id"),
   CONSTRAINT "FK_Player.current_team_id"
     FOREIGN KEY ("current_team_id")
@@ -29,9 +29,9 @@ CREATE TABLE "Player" (
 );
 
 CREATE TABLE "Goals" (
-  "id" <type>,
-  "player_id" <type>,
-  "match_id" <type>,
+  "id" SERIAL,
+  "player_id" SERIAL,
+  "match_id" SERIAL,
   PRIMARY KEY ("id"),
   CONSTRAINT "FK_Goals.player_id"
     FOREIGN KEY ("player_id")
@@ -39,15 +39,15 @@ CREATE TABLE "Goals" (
 );
 
 CREATE TABLE "Matches" (
-  "id" <type>,
-  "home_team_id" <type>,
-  "away_team_id" <type>,
-  "season_id" <type>,
-  "head_ref_id" <type>,
-  "asst_ref_id_1" <type>,
-  "asst_ref_id_2" <type>,
-  "location" <type>,
-  "date" <type>,
+  "id" SERIAL,
+  "home_team_id" SERIAL,
+  "away_team_id" SERIAL,
+  "season_id" SERIAL,
+  "head_ref_id" SERIAL,
+  "asst_ref_id_1" SERIAL,
+  "asst_ref_id_2" SERIAL,
+  "location" TEXT,
+  "date" TEXT,
   PRIMARY KEY ("id"),
   CONSTRAINT "FK_Matches.season_id"
     FOREIGN KEY ("season_id")
@@ -69,31 +69,29 @@ CREATE TABLE "Matches" (
       REFERENCES "Teams"("id"),
   CONSTRAINT "FK_Matches.home_team_id"
     FOREIGN KEY ("home_team_id")
-      REFERENCES "Teams"("id")
+      REFERENCES "Teams"SERIAL
 );
 
 CREATE TABLE "Results" (
-  "id" <type>,
-  "team_id" <type>,
-  "match_id" <type>,
-  "result" <type>,
+  "id" SERIAL,
+  "team_id" SERIAL,
+  "match_id" SERIAL,
+  "result" TEXT,
   PRIMARY KEY ("id"),
   CONSTRAINT "FK_Results.match_id"
     FOREIGN KEY ("match_id")
       REFERENCES "Matches"("id"),
   CONSTRAINT "FK_Results.team_id"
     FOREIGN KEY ("team_id")
-      REFERENCES "Teams"("id")
+      REFERENCES "Teams"SERIAL
 );
 
 CREATE TABLE "Lineups" (
-  "id" <type>,
-  "player_id" <type>,
-  "match_id" <type>,
-  "team_id" <type>,
+  "id" SERIAL,
+  "player_id" SERIAL,
+  "match_id" SERIAL,
+  "team_id" SERIAL,
   PRIMARY KEY ("id"),
   CONSTRAINT "FK_Lineups.player_id"
     FOREIGN KEY ("player_id")
-      REFERENCES "Player"("id")
-);
-
+      REFERENCES "Player"("id"SERIAL

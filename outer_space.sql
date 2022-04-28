@@ -14,7 +14,16 @@ CREATE TABLE planets
   orbital_period_in_years FLOAT NOT NULL,
   orbits_around TEXT NOT NULL,
   galaxy TEXT NOT NULL,
-  moons TEXT[]
+  moon_id SERIAL
+  CONSTRAINT "FK_planets.moon_id"
+    FOREIGN KEY ("moon_id")
+      REFERENCES "moons"("id")
+);
+
+CREATE TABLE moons
+(
+  id SERIAL
+  name TEXT
 );
 
 INSERT INTO planets

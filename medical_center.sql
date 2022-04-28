@@ -1,19 +1,19 @@
 CREATE TABLE "Doctor" (
-  "id" <type>,
-  "name" <type>,
+  "id" SERIAL,
+  "name" TEXT,
   PRIMARY KEY ("id")
 );
 
 CREATE TABLE "Patient" (
-  "id" <type>,
-  "name" <type>,
+  "id" SERIAL,
+  "name" TEXT,
   PRIMARY KEY ("id")
 );
 
 CREATE TABLE "Visit" (
-  "id" <type>,
-  "doctor_id" <type>,
-  "patient_id" <type>,
+  "id" SERIAL,
+  "doctor_id" SERIAL,
+  "patient_id" SERIAL,
   PRIMARY KEY ("id"),
   CONSTRAINT "FK_Visit.doctor_id"
     FOREIGN KEY ("doctor_id")
@@ -24,16 +24,16 @@ CREATE TABLE "Visit" (
 );
 
 CREATE TABLE "Diseases" (
-  "id" <type>,
-  "name" <type>,
-  "description" <type>,
-  PRIMARY KEY ("id")
+  "id" SERIAL,
+  "name" TEXT,
+  "description" TEXT,
+  PRIMARY KEY TEXT
 );
 
 CREATE TABLE "Diagnoses" (
-  "id" <type>,
-  "visit_id" <type>,
-  "disease_id" <type>,
+  "id" SERIAL,
+  "visit_id" TEXT,
+  "disease_id" SERIAL,
   PRIMARY KEY ("id"),
   CONSTRAINT "FK_Diagnoses.disease_id"
     FOREIGN KEY ("disease_id")
